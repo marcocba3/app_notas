@@ -1,0 +1,113 @@
+/* style.css */
+body {
+    background-color: #0d0d0d;
+    color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    font-size: 24px;
+}
+
+
+/* Estilos para la imagen */
+.imageUwu {
+    display: flex; /* Usar flexbox para centrar la imagen */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-bottom: 20px; /* Espacio debajo de la imagen */
+}
+
+.imageUwu img {
+    max-width: 100%; /* Hacer que la imagen no exceda el ancho del contenedor */
+    height: auto; /* Mantener la proporción de aspecto */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+
+
+.form-container {
+    max-width: 400px;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    border: 1px solid #444;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+.form-control {
+    background-color: #2a2a2a;
+    color: #f5f5f5;
+    border: 1px solid #555;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: #3a3a3a;
+    border-color: #ffcc00;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.7);
+}
+
+.btn-primary {
+    background-color: #ffcc00;
+    color: #121212;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e6b800;
+    transform: scale(1.05);
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #e6b800;
+}
+
+/* Animación para mejorar la experiencia */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    animation: fadeIn 1s ease-in-out;
+}

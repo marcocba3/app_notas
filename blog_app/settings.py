@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog_app',
     'notas',
     'login',
 ]
@@ -86,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'notas',
-        'USER': 'postgres',
-        'PASSWORD':'6030',
+        'USER': 'joaco',
+        'PASSWORD':'1234',
         'HOST': 'localhost',
         'PORT': '5432', 
     }
@@ -130,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'blog_app/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Asegúrate de que esta ruta sea correcta
