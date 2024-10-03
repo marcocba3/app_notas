@@ -1,10 +1,16 @@
-from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
+from django.contrib.auth.password_validation import UserAttributeSimilarityValidator
 
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+class CustomUserAttributeSimilarityValidator(UserAttributeSimilarityValidator):
+    def __init__(self, max_similarity=0.7):
+        super().__init__(max_similarity=max_similarity)
 
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+    def validate(self, password, user=None):
+        try:
+            super().validate(password, user)
+        except ValidationError:
+            raise ValidationError(
+                _('Tu contraseña no debe ser similar a tu información personal.'),
+                code='password_too_similar',
+            )

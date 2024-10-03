@@ -79,14 +79,28 @@
         .volver-btn:hover {
             background-color: #5a6268; /* Color más oscuro al pasar el ratón */
         }
-        .action-buttons {
-            display: flex; /* Flexbox para alinear el botón "Volver al Login" */
-            justify-content: center; /* Centrar el contenido horizontalmente */
-            gap: 10px; /* Espacio entre el botón y el formulario */
+        /* Estilos para el botón de Logout en la parte superior derecha */
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ffcc00; /* Mismo estilo que el botón de agregar nota */
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .logout-btn:hover {
+            background-color: #e6b800;
         }
     </style>
 </head>
 <body>
+
+    <!-- Botón de Logout -->
+    <a href="{% url 'logout' %}" class="logout-btn">Cerrar sesion</a>
+
     <h1>Aplicación de Notas</h1>
 
     <a href="{% url 'crear_nota' %}" class="btn btn-primary">Agregar Nota</a>
@@ -108,8 +122,6 @@
             <h4>No tiene notas</h4>
         {% endfor %}
     </div>
-    <div class="action-buttons">
-        <a href="{% url 'login' %}" class="btn volver-btn">DesLoguear</a>
-    </div>
+
 </body>
 </html>
