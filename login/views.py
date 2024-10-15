@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages  # Importa el sistema de mensajes
 
 def register(request):
     if request.method == 'POST':
@@ -20,6 +21,8 @@ def login_view(request):
             user = form.get_user()
             login(request, user)  # Iniciar sesión
             return redirect('list_tareas')  # Redirigir a la app de notas
+        else:
+            messages.error(request, "Credenciales incorrectas")  # Mostrar mensaje de error
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})

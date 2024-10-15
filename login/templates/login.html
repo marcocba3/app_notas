@@ -17,6 +17,17 @@
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary mt-3">Iniciar Sesión</button>
         </form>
+        {% if form.errors %}
+        <div class="alert alert-danger mt-3">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         <div class="text-center mt-3">
             <a href="{% url 'register' %}">No tienes cuenta? Registrarse</a>
         </div>

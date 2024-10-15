@@ -60,6 +60,7 @@ LOGIN_REDIRECT_URL = 'list_tareas'  # Vista principal de notas
 # Redirigir después de cerrar sesión
 LOGOUT_REDIRECT_URL = 'login'  # Vista de login
 
+LOGIN_URL = 'login'
 
 TEMPLATES = [
     {
