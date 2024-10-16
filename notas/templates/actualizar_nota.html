@@ -52,6 +52,13 @@
             justify-content: center;
             margin-top: 10px;
         }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center; /* Centrar el texto del mensaje */
+            width: 100%; /* Ocupa el 100% del espacio disponible */
+        }
     </style>
 </head>
 <body>
@@ -63,6 +70,10 @@
         <button>Actualizar</button>
         {% csrf_token %}
     </form>
+
+    {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+    {% endif %}
 
     <div class="center">
         <a href="{% url 'list_tareas' %}" class="btn volver-btn">Volver a la lista</a>

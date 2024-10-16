@@ -32,9 +32,19 @@ def eliminar_nota(request, nota_id):
 @login_required
 def actualizar_nota(request, nota_id):
     nota = get_object_or_404(Notas, id=nota_id, usuario=request.user)  # Solo permitir al usuario propietario de la nota
+    error_message = None
+    
     if request.method == 'POST':
-        nota.titulo = request.POST['titulo']
-        nota.descripcion = request.POST['descripcion']
-        nota.save()
-        return redirect('list_tareas')
-    return render(request, 'actualizar_nota.html', {'nota': nota})
+        titulo = request.POST['titulo']
+        descripcion = request.POST['descripcion']
+        
+        if len(titulo) > 25:
+            error_message = "El título no puede tener más de 25 caracteres."
+        else:
+            nota.titulo = titulo
+            nota.descripcion = descripcion
+            nota.save()
+            return redirect('list_tareas')
+
+    return render(request, 'actualizar_nota.html', {'nota': nota, 'error_message': error_message})
+
