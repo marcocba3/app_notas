@@ -21,7 +21,7 @@
             flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
-            gap: 20px; /* Espacio entre el formulario y el botón */
+            gap: 20px;
         }
         .form-group {
             display: flex;
@@ -48,16 +48,21 @@
         }
         .volver-btn {
             margin-top: 20px;
-            background-color: #6c757d; /* Color secundario de Bootstrap */
-            width: fit-content; /* Ajusta el ancho al contenido del botón */
+            background-color: #6c757d;
+            width: fit-content;
         }
         .volver-btn:hover {
-            background-color: #5a6268; /* Color más oscuro al pasar el ratón */
+            background-color: #5a6268;
         }
         .action-buttons {
-            display: flex; /* Flexbox para alinear el botón "Volver a la lista" */
-            justify-content: center; /* Centrar el contenido horizontalmente */
-            gap: 10px; /* Espacio entre el botón y el formulario */
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -71,6 +76,10 @@
             <button>Guardar</button>
             {% csrf_token %}
         </form>
+
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% endif %}
 
         <div class="action-buttons">
             <a href="{% url 'list_tareas' %}" class="btn volver-btn">Volver a la lista</a>

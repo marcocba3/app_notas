@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Notas
+from django.core.exceptions import ValidationError
 
 @login_required
 def list_tareas(request):
@@ -9,11 +10,18 @@ def list_tareas(request):
 
 @login_required
 def crear_nota(request):
+    error_message = None
     if request.method == 'POST':
-        notas = Notas(titulo=request.POST['titulo'], descripcion=request.POST['descripcion'], usuario=request.user)  # Asociar la nota al usuario autenticado
-        notas.save()
-        return redirect('list_tareas')
-    return render(request, 'agregar_nota.html')
+        titulo = request.POST['titulo']
+        descripcion = request.POST['descripcion']
+        if len(titulo) > 25:
+            error_message = "El título no puede tener más de 25 caracteres."
+        else:
+            notas = Notas(titulo=titulo, descripcion=descripcion, usuario=request.user)
+            notas.save()
+            return redirect('list_tareas')
+
+    return render(request, 'agregar_nota.html', {'error_message': error_message})
 
 @login_required
 def eliminar_nota(request, nota_id):
