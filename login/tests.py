@@ -21,7 +21,7 @@ class LoginTests(TestCase):
         })
         self.assertEqual(response.status_code, 302)  # Redirige después del login
         self.assertRedirects(response, '/notas/')  # Redirige a la página principal o alguna vista específica
-        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertTrue(response.wsgi_request.user.is_authenticated) #verifica que el usuario que está haciendo la solicitud está autenticado
 
     def test_login_invalid_credentials(self):
         """
@@ -35,7 +35,7 @@ class LoginTests(TestCase):
         })
         self.assertEqual(response.status_code, 200)  # No redirige, se mantiene en la misma página
         self.assertContains(response, "Please enter a correct username and password.")  # Si este mensaje está en la plantilla
-        self.assertFalse(response.wsgi_request.user.is_authenticated)
+        self.assertFalse(response.wsgi_request.user.is_authenticated) #verifica que el usuario que está haciendo la solicitud está autenticado
 
 
     def test_login_empty_fields(self):
@@ -49,4 +49,4 @@ class LoginTests(TestCase):
         })
         self.assertEqual(response.status_code, 200)  # No redirige, se queda en la página de login
         self.assertContains(response, "This field is required.")  # Verifica si hay mensajes de error
-        self.assertFalse(response.wsgi_request.user.is_authenticated)
+        self.assertFalse(response.wsgi_request.user.is_authenticated) #verifica que el usuario que está haciendo la solicitud está autenticado
