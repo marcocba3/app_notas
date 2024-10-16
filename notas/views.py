@@ -14,13 +14,22 @@ def crear_nota(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
         descripcion = request.POST['descripcion']
-        if len(titulo) > 25:
+
+        # Validación de campos vacíos
+        if not titulo:
+            error_message = "Completa este campo"
+        elif not descripcion:
+            error_message = "Completa este campo"
+        elif len(titulo) > 25:
             error_message = "El título no puede tener más de 25 caracteres."
-        else:
+        
+        # Si no hay errores, se guarda la nota
+        if not error_message:
             notas = Notas(titulo=titulo, descripcion=descripcion, usuario=request.user)
             notas.save()
-            return redirect('list_tareas')
+            return redirect('list_tareas')  # Redirige si la nota se crea correctamente
 
+    # Si hay errores, renderiza la página de nuevo sin redirigir
     return render(request, 'agregar_nota.html', {'error_message': error_message})
 
 @login_required
